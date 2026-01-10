@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>極ゼロ１集客ツール - Kiwami Zero-One Marketing</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Fonts - Noto Sans JP -->
+    <title>Funnel Architect | Strategic Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
             margin: 0;
@@ -24,122 +20,223 @@
             font-family: 'Noto Sans JP', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .container {
-            display: flex;
-            min-height: 100vh;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
         }
 
-        /* Left Panel */
-        .left-panel {
-            flex: 1;
-            background: white;
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
         }
 
-        .logo {
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-navigation {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            height: fit-content;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .step-navigation h2 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 0.5rem;
         }
 
-        .logo i {
-            font-size: 36px;
+        .step-btn {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .step-btn.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
 
-        .logo h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #2d3748;
+        .step-btn i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 2.5rem;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
 
         .input-section {
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
         }
 
-        .input-section label {
-            display: block;
-            font-size: 18px;
-            font-weight: 500;
-            color: #4a5568;
-            margin-bottom: 15px;
+        .input-section h3 {
+            color: #0f172a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .input-section label i {
-            margin-right: 10px;
-            color: #667eea;
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 200px;
-            padding: 20px;
-            font-size: 16px;
-            font-family: 'Noto Sans JP', sans-serif;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            resize: vertical;
+        .input-area {
+            background: rgb(248, 250, 252);
+            border: 2px solid rgb(226, 232, 240);
+            border-radius: 2.5rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        textarea:focus {
-            outline: none;
+        .input-area:focus-within {
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
 
-        .analyze-btn {
+        .input-area textarea {
             width: 100%;
-            padding: 18px;
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 150px;
+            background: transparent;
             border: none;
-            border-radius: 12px;
+            outline: none;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1rem;
+            color: #0f172a;
+            resize: vertical;
+        }
+
+        .input-area textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 1.5rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
-        .analyze-btn:hover {
+        .generate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .analyze-btn:active {
+        .generate-btn:active {
             transform: translateY(0);
         }
 
-        .analyze-btn:disabled {
+        .generate-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
 
-        .analyze-btn .spinner {
-            display: none;
-            animation: spin 1s linear infinite;
+        .output-section {
+            margin-top: 2rem;
         }
 
-        .analyze-btn.loading .spinner {
-            display: inline-block;
+        .output-section h3 {
+            color: #0f172a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .output-area {
+            background: rgb(15, 23, 42);
+            border-radius: 4.5rem;
+            padding: 3rem;
+            min-height: 300px;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.8;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .output-area.empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+        }
+
+        .output-content {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
@@ -147,109 +244,16 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Right Panel */
-        .right-panel {
-            flex: 1;
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            padding: 60px 50px;
-            color: white;
-            overflow-y: auto;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
-        .output-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        .output-header i {
-            font-size: 28px;
-            color: #667eea;
-        }
-
-        .output-header h2 {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .output-content {
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .output-content.empty {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-        }
-
-        .output-content.empty i {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .output-content h3 {
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 20px;
-            color: #667eea;
-        }
-
-        .output-content p {
-            margin-bottom: 15px;
-        }
-
-        .output-content ul, .output-content ol {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-
-        .output-content li {
-            margin-bottom: 8px;
-        }
-
-        .output-content strong {
-            color: #667eea;
-        }
-
-        .output-content code {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-
-        /* Settings Button */
-        .settings-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .settings-btn:hover {
-            transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
-        }
-
-        /* Modal */
+        /* API Key Modal */
         .modal {
             display: none;
             position: fixed;
@@ -257,205 +261,294 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            font-family: 'Noto Sans JP', sans-serif;
         }
 
-        .modal.active {
+        .modal.show {
             display: flex;
         }
 
         .modal-content {
             background: white;
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 16px;
             max-width: 500px;
             width: 90%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .modal-content h2 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .modal-content h2 i {
-            color: #667eea;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #333;
         }
 
         .modal-content p {
-            color: #4a5568;
-            margin-bottom: 20px;
+            margin: 0 0 24px 0;
+            color: #666;
+            font-size: 14px;
             line-height: 1.6;
         }
 
-        .modal-content input {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-family: 'Noto Sans JP', sans-serif;
-            transition: all 0.3s ease;
+        .modal-content a {
+            color: #4285f4;
         }
 
-        .modal-content input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .modal-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
         }
 
         .modal-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .modal-btn {
+        .modal-btn-primary {
             flex: 1;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-
-        .modal-btn.primary {
+            padding: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .modal-btn.primary:hover {
+        .modal-btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .modal-btn.secondary {
-            background: #e2e8f0;
-            color: #4a5568;
+        .modal-btn-secondary {
+            flex: 0.5;
+            padding: 12px;
+            background: #f5f5f5;
+            color: #666;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .modal-btn.secondary:hover {
-            background: #cbd5e0;
+        .modal-btn-secondary:hover {
+            background: #e0e0e0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
-            }
+        .modal-note {
+            margin: 16px 0 0 0;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.5;
+        }
 
-            .left-panel, .right-panel {
-                padding: 40px 30px;
-            }
+        .settings-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            transition: all 0.3s;
+        }
+
+        .settings-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
         @media (max-width: 768px) {
-            .left-panel, .right-panel {
-                padding: 30px 20px;
+            .main-content {
+                grid-template-columns: 1fr;
             }
 
-            .logo h1 {
-                font-size: 22px;
+            .step-navigation {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
             }
 
-            .settings-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                bottom: 20px;
-                right: 20px;
+            .step-navigation h2 {
+                grid-column: 1 / -1;
+            }
+
+            .step-btn {
+                font-size: 0.75rem;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .content-area {
+                padding: 2rem;
+                border-radius: 1.5rem;
+            }
+
+            .input-area {
+                border-radius: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .output-area {
+                border-radius: 2rem;
+                padding: 2rem;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left Panel -->
-        <div class="left-panel">
-            <div class="logo">
-                <i class="fas fa-brain"></i>
-                <h1>AI Vision Analyzer</h1>
-            </div>
-
-            <div class="input-section">
-                <label for="visionInput">
-                    <i class="fas fa-lightbulb"></i>
-                    あなたのビジョンを入力してください
-                </label>
-                <textarea
-                    id="visionInput"
-                    placeholder="例: 地域の小規模農家を支援するため、農作物の直売プラットフォームを立ち上げたい。消費者と生産者を直接つなぎ、新鮮な野菜を届けながら、農家の収入向上を目指す。"
-                ></textarea>
-            </div>
-
-            <button class="analyze-btn" id="analyzeBtn">
-                <i class="fas fa-rocket"></i>
-                <span>AI分析を開始</span>
-                <i class="fas fa-spinner spinner"></i>
-            </button>
+        <div class="header">
+            <h1>Funnel Architect | Strategic Architect</h1>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.125rem;">AIがあなたのビジネスビジョンを戦略的ファネルに変換</p>
         </div>
 
-        <!-- Right Panel -->
-        <div class="right-panel">
-            <div class="output-header">
-                <i class="fas fa-file-contract"></i>
-                <h2>PROFESSIONAL OUTPUT</h2>
+        <div class="main-content">
+            <div class="step-navigation">
+                <h2><i class="fas fa-list"></i> ステップナビゲーション</h2>
+                <button class="step-btn active" data-step="1">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Step 1: ビジョン入力</span>
+                </button>
+                <button class="step-btn" data-step="2">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Step 2: ターゲット分析</span>
+                </button>
+                <button class="step-btn" data-step="3">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Step 3: ペルソナ設計</span>
+                </button>
+                <button class="step-btn" data-step="4">
+                    <i class="fas fa-heart"></i>
+                    <span>Step 4: 課題抽出</span>
+                </button>
+                <button class="step-btn" data-step="5">
+                    <i class="fas fa-gift"></i>
+                    <span>Step 5: 価値提案</span>
+                </button>
+                <button class="step-btn" data-step="6">
+                    <i class="fas fa-box"></i>
+                    <span>Step 6: 商品設計</span>
+                </button>
+                <button class="step-btn" data-step="7">
+                    <i class="fas fa-funnel-dollar"></i>
+                    <span>Step 7: ファネル構築</span>
+                </button>
+                <button class="step-btn" data-step="8">
+                    <i class="fas fa-magnet"></i>
+                    <span>Step 8: リード獲得</span>
+                </button>
+                <button class="step-btn" data-step="9">
+                    <i class="fas fa-handshake"></i>
+                    <span>Step 9: 育成戦略</span>
+                </button>
+                <button class="step-btn" data-step="10">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Step 10: セールス最適化</span>
+                </button>
+                <button class="step-btn" data-step="11">
+                    <i class="fas fa-redo"></i>
+                    <span>Step 11: リテンション</span>
+                </button>
+                <button class="step-btn" data-step="12">
+                    <i class="fas fa-rocket"></i>
+                    <span>Step 12: スケール戦略</span>
+                </button>
+                <button class="step-btn" data-step="13">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Step 13: KPI設定</span>
+                </button>
+                <button class="step-btn" data-step="14">
+                    <i class="fas fa-cogs"></i>
+                    <span>Step 14: 自動化</span>
+                </button>
+                <button class="step-btn" data-step="15">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>Step 15: 完成・実行</span>
+                </button>
             </div>
-            <div class="output-content empty" id="outputContent">
-                <i class="fas fa-chart-line"></i>
-                <p>分析結果がここに表示されます</p>
+
+            <div class="content-area">
+                <div class="input-section">
+                    <h3><i class="fas fa-pen"></i> あなたのビジョンを入力してください</h3>
+                    <div class="input-area">
+                        <textarea id="visionInput" placeholder="例：「オンラインでヨガ教室を開業したい。初心者向けに月額サブスクで提供し、zoomでライブレッスンを行う。まずは月10名の生徒を集めたい。」
+
+ビジネスのアイデア、目標、ターゲット、提供方法など、思いつくことを自由に入力してください。AIが戦略的なファネルに変換します。"></textarea>
+                    </div>
+                    <button class="generate-btn" id="generateBtn">
+                        <i class="fas fa-magic"></i>
+                        <span>AIで戦略を生成</span>
+                    </button>
+                </div>
+
+                <div class="output-section">
+                    <h3><i class="fas fa-sparkles"></i> PROFESSIONAL OUTPUT</h3>
+                    <div class="output-area empty" id="outputArea">
+                        <div class="output-content" id="outputContent">
+                            ここにAIが生成した戦略的ファネルが表示されます...
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Settings Button -->
-    <button class="settings-btn" id="settingsBtn">
-        <i class="fas fa-cog"></i>
-    </button>
 
     <!-- API Key Modal -->
     <div class="modal" id="apiKeyModal">
         <div class="modal-content">
-            <h2>
-                <i class="fas fa-key"></i>
-                API キー設定
-            </h2>
-            <p>Google Gemini API キーを入力してください。このキーはブラウザのローカルストレージに安全に保存されます。</p>
+            <h2>🔑 Gemini API キー設定</h2>
+            <p>
+                AI機能を使用するには、Google Gemini APIキーが必要です。<br>
+                <a href="https://aistudio.google.com/app/apikey" target="_blank">こちら</a>からAPIキーを取得してください。
+            </p>
             <input
-                type="password"
+                type="text"
                 id="apiKeyInput"
-                placeholder="AIza..."
-            >
+                class="modal-input"
+                placeholder="AIzaSy..."
+            />
             <div class="modal-buttons">
-                <button class="modal-btn secondary" id="cancelBtn">キャンセル</button>
-                <button class="modal-btn primary" id="saveBtn">保存</button>
+                <button class="modal-btn-primary" id="saveApiKeyBtn">
+                    保存して開始
+                </button>
+                <button class="modal-btn-secondary" id="skipApiKeyBtn">
+                    スキップ
+                </button>
             </div>
+            <p class="modal-note">
+                ※ APIキーはブラウザのローカルストレージに保存されます。外部には送信されません。
+            </p>
         </div>
     </div>
 
-    <!-- Import Gemini SDK -->
+    <!-- Settings Button -->
+    <button class="settings-btn" id="settingsBtn" title="API設定">
+        <i class="fas fa-cog"></i>
+    </button>
+
     <script type="importmap">
     {
         "imports": {
@@ -465,234 +558,207 @@
     </script>
 
     <script type="module">
-        import { GoogleGenerativeAI } from "@google/generative-ai";
+        import { GoogleGenerativeAI } from '@google/generative-ai';
 
-        // DOM Elements
-        const visionInput = document.getElementById('visionInput');
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const outputContent = document.getElementById('outputContent');
-        const settingsBtn = document.getElementById('settingsBtn');
+        // Global state
+        let genAI = null;
+        let currentStep = 1;
+
+        // Elements
         const apiKeyModal = document.getElementById('apiKeyModal');
         const apiKeyInput = document.getElementById('apiKeyInput');
-        const saveBtn = document.getElementById('saveBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
+        const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+        const skipApiKeyBtn = document.getElementById('skipApiKeyBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const visionInput = document.getElementById('visionInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const outputArea = document.getElementById('outputArea');
+        const outputContent = document.getElementById('outputContent');
+        const stepBtns = document.querySelectorAll('.step-btn');
 
-        // Local Storage Key
-        const API_KEY_STORAGE = 'gemini_api_key';
-
-        // Check if API key exists
-        let apiKey = localStorage.getItem(API_KEY_STORAGE);
-        if (!apiKey) {
-            apiKeyModal.classList.add('active');
+        // Initialize
+        function init() {
+            const apiKey = localStorage.getItem('GEMINI_API_KEY');
+            if (!apiKey) {
+                showApiKeyModal();
+            } else {
+                initializeAI(apiKey);
+            }
         }
 
-        // Settings button
-        settingsBtn.addEventListener('click', () => {
-            apiKeyInput.value = '';
-            apiKeyModal.classList.add('active');
-        });
-
-        // Save API key
-        saveBtn.addEventListener('click', () => {
-            const newApiKey = apiKeyInput.value.trim();
-            if (newApiKey) {
-                localStorage.setItem(API_KEY_STORAGE, newApiKey);
-                apiKey = newApiKey;
-                apiKeyModal.classList.remove('active');
-                showNotification('API キーが保存されました', 'success');
-            } else {
-                showNotification('API キーを入力してください', 'error');
+        // Show API Key Modal
+        function showApiKeyModal() {
+            apiKeyModal.classList.add('show');
+            const existingKey = localStorage.getItem('GEMINI_API_KEY');
+            if (existingKey) {
+                apiKeyInput.value = existingKey;
             }
-        });
+        }
 
-        // Cancel button
-        cancelBtn.addEventListener('click', () => {
-            if (apiKey) {
-                apiKeyModal.classList.remove('active');
-            } else {
-                showNotification('API キーを設定してください', 'error');
+        // Hide API Key Modal
+        function hideApiKeyModal() {
+            apiKeyModal.classList.remove('show');
+        }
+
+        // Save API Key
+        function saveApiKey() {
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+                alert('APIキーを入力してください');
+                return;
             }
-        });
+            if (!apiKey.startsWith('AIzaSy')) {
+                if (!confirm('入力されたAPIキーの形式が正しくない可能性があります。このまま保存しますか？')) {
+                    return;
+                }
+            }
+            localStorage.setItem('GEMINI_API_KEY', apiKey);
+            initializeAI(apiKey);
+            hideApiKeyModal();
+        }
 
-        // Analyze button
-        analyzeBtn.addEventListener('click', async () => {
+        // Skip API Key Setup
+        function skipApiKey() {
+            if (confirm('APIキーなしではAI機能が使用できません。スキップしますか？')) {
+                hideApiKeyModal();
+            }
+        }
+
+        // Initialize AI
+        function initializeAI(apiKey) {
+            try {
+                genAI = new GoogleGenerativeAI(apiKey);
+                console.log('Gemini AI initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize AI:', error);
+                alert('APIキーの初期化に失敗しました。設定を確認してください。');
+            }
+        }
+
+        // Generate Strategy
+        async function generateStrategy() {
             const vision = visionInput.value.trim();
 
             if (!vision) {
-                showNotification('ビジョンを入力してください', 'error');
+                alert('ビジョンを入力してください');
                 return;
             }
 
-            if (!apiKey) {
-                showNotification('API キーを設定してください', 'error');
-                apiKeyModal.classList.add('active');
+            if (!genAI) {
+                alert('APIキーが設定されていません。設定ボタンから設定してください。');
+                showApiKeyModal();
                 return;
             }
 
             // Show loading state
-            analyzeBtn.classList.add('loading');
-            analyzeBtn.disabled = true;
-            outputContent.innerHTML = '<div style="text-align: center;"><i class="fas fa-spinner fa-spin" style="font-size: 48px; color: #667eea;"></i><p style="margin-top: 20px;">分析中...</p></div>';
-            outputContent.classList.remove('empty');
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>生成中...</span>';
+            outputArea.classList.remove('empty');
+            outputContent.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i><span>AIが戦略を生成しています...</span></div>';
 
             try {
-                const genAI = new GoogleGenerativeAI(apiKey);
-                const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+                const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-                const prompt = `あなたはプロフェッショナルなビジネスコンサルタントです。以下のビジョンについて、詳細かつ実践的な分析を提供してください。
+                const prompt = `あなたはビジネス戦略とマーケティングファネルの専門家です。
+以下のビジョンに基づいて、詳細な戦略的ファネルを作成してください。
 
-【ビジョン】
+【ユーザーのビジョン】
 ${vision}
 
-以下の観点から分析してください：
+【出力形式】
+以下の項目を含む詳細な戦略を日本語で提供してください：
 
-## 1. ビジョンの概要
-このビジョンの本質と目的を簡潔にまとめてください。
+1. 📊 ビジネス概要
+   - ビジネスの本質と目的
+   - ターゲット市場の分析
 
-## 2. 市場機会分析
-- ターゲット市場の規模と成長性
-- 主要な顧客セグメント
-- 市場のニーズとペインポイント
+2. 🎯 ターゲットペルソナ
+   - 詳細な顧客プロファイル
+   - 課題とニーズ
 
-## 3. 競争優位性
-- 独自の価値提案
-- 競合との差別化要因
-- 参入障壁
+3. 💎 価値提案
+   - 独自の価値
+   - 競合との差別化
 
-## 4. 実現可能性
-- 必要なリソース（人材、技術、資金）
-- 主要なリスクと対策
-- 実現に向けたロードマップ
+4. 📦 商品・サービス設計
+   - 提供内容
+   - 価格戦略
 
-## 5. 財務的見通し
-- 収益モデル
-- 初期投資の概算
-- 収益化までの期間
+5. 🎢 マーケティングファネル
+   - 認知（Awareness）
+   - 興味（Interest）
+   - 検討（Consideration）
+   - 購入（Purchase）
+   - 継続（Retention）
 
-## 6. アクションプラン
-具体的な次のステップを5つ提案してください。
+6. 📈 実行計画
+   - 優先度の高いアクション
+   - KPI指標
 
-markdown形式で、見やすく整理された形で回答してください。`;
+7. 🚀 成長戦略
+   - スケールのための施策
+
+具体的で実践可能な内容を、構造化して分かりやすく記述してください。`;
 
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
                 const text = response.text();
 
-                // Format and display output
-                displayOutput(text);
+                // Display result
+                outputContent.textContent = text;
 
             } catch (error) {
-                console.error('Error:', error);
-                outputContent.innerHTML = `
-                    <div style="color: #ff6b6b; text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px;"></i>
-                        <h3>エラーが発生しました</h3>
-                        <p>${error.message}</p>
-                        <p style="margin-top: 15px; font-size: 14px; opacity: 0.7;">API キーが正しいか確認してください。</p>
-                    </div>
-                `;
+                console.error('Generation error:', error);
+                outputContent.innerHTML = `<div style="color: #ff6b6b;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    エラーが発生しました: ${error.message}
+                    <br><br>
+                    APIキーが正しいか、または利用制限に達していないか確認してください。
+                </div>`;
             } finally {
-                analyzeBtn.classList.remove('loading');
-                analyzeBtn.disabled = false;
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fas fa-magic"></i> <span>AIで戦略を生成</span>';
             }
+        }
+
+        // Step Navigation
+        function handleStepClick(step) {
+            currentStep = step;
+            stepBtns.forEach(btn => {
+                if (parseInt(btn.dataset.step) === step) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Update content based on step (placeholder)
+            console.log('Switched to step:', step);
+        }
+
+        // Event Listeners
+        saveApiKeyBtn.addEventListener('click', saveApiKey);
+        skipApiKeyBtn.addEventListener('click', skipApiKey);
+        settingsBtn.addEventListener('click', showApiKeyModal);
+        generateBtn.addEventListener('click', generateStrategy);
+
+        stepBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = parseInt(btn.dataset.step);
+                handleStepClick(step);
+            });
         });
-
-        // Display formatted output
-        function displayOutput(text) {
-            // Simple markdown-to-HTML conversion
-            let html = text
-                // Headers
-                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                .replace(/^## (.*$)/gim, '<h3>$1</h3>')
-                .replace(/^# (.*$)/gim, '<h3>$1</h3>')
-                // Bold
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                // Lists
-                .replace(/^\- (.*$)/gim, '<li>$1</li>')
-                .replace(/^\* (.*$)/gim, '<li>$1</li>')
-                .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
-                // Paragraphs
-                .replace(/\n\n/g, '</p><p>')
-                // Line breaks
-                .replace(/\n/g, '<br>');
-
-            // Wrap lists
-            html = html.replace(/(<li>.*?<\/li>)+/gs, '<ul>$&</ul>');
-
-            // Wrap in paragraphs
-            html = '<p>' + html + '</p>';
-
-            // Clean up
-            html = html.replace(/<p><\/p>/g, '');
-            html = html.replace(/<p><h3>/g, '<h3>');
-            html = html.replace(/<\/h3><\/p>/g, '</h3>');
-            html = html.replace(/<p><ul>/g, '<ul>');
-            html = html.replace(/<\/ul><\/p>/g, '</ul>');
-
-            outputContent.innerHTML = html;
-            outputContent.classList.remove('empty');
-        }
-
-        // Show notification
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 30px;
-                right: 30px;
-                padding: 20px 30px;
-                background: ${type === 'success' ? '#48bb78' : '#f56565'};
-                color: white;
-                border-radius: 10px;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-                z-index: 3000;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add animation styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    opacity: 0;
-                    transform: translateX(100px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-            @keyframes slideOut {
-                from {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-                to {
-                    opacity: 0;
-                    transform: translateX(100px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
 
         // Allow Enter key in textarea with Shift
         visionInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter' && e.ctrlKey) {
                 e.preventDefault();
-                analyzeBtn.click();
+                generateStrategy();
             }
         });
+
+        // Initialize app
+        init();
     </script>
 </body>
 </html>
