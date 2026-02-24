@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://wtnext.vercel.app/sitemap.xml
+
+# Block unnecessary files
+Disallow: /inject-seo.js
+Disallow: /decode-and-replace.js
+Disallow: /verify-url.js
+Disallow: /*.backup
+Disallow: /service-worker.js
