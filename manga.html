@@ -82,9 +82,22 @@
 
   <script>
     const stack = document.getElementById('mangaStack');
+    function range(a, b) { const r = []; for (let i = a; i <= b; i++) r.push('page-' + String(i).padStart(3, '0')); return r; }
+    // 物語順（既存74＋増補31＝105ページ）。増補はネームの挿入位置どおりに差し込む。
+    const order = [].concat(
+      range(1, 42),
+      ['zoho-p075','zoho-p076','zoho-p100','zoho-p101','zoho-p102','zoho-p103','zoho-p077','zoho-p078','zoho-p079','zoho-p080','zoho-p081','zoho-p082'],
+      ['zoho-p083','zoho-p084','zoho-p085','zoho-p086'],
+      range(43, 54),
+      ['zoho-p087','zoho-p088','zoho-p104','zoho-p105','zoho-p089','zoho-p090','zoho-p091','zoho-p092'],
+      range(55, 66),
+      ['zoho-p093','zoho-p094','zoho-p095'],
+      ['zoho-p096','zoho-p097','zoho-p098','zoho-p099'],
+      range(67, 74)
+    );
     const ctaAfter = {
-      8: '順番の誤解を解く前に、無料特典で最初の一歩を。',
-      42: '需要テストの告知テンプレも、無料でお渡ししています。'
+      'page-008': '順番の誤解を解く前に、無料特典で最初の一歩を。',
+      'zoho-p086': '広告で最初の読者が集まったら、次は横に広げる。無料特典で一式をどうぞ。'
     };
     function makeCta(text) {
       const box = document.createElement('div');
@@ -93,25 +106,25 @@
       return box;
     }
     if (stack) {
-      for (let page = 1; page <= 74; page += 1) {
-        const pageNumber = String(page).padStart(3, '0');
+      order.forEach(function (token, idx) {
+        const label = token.indexOf('zoho') === 0 ? token.replace('zoho-p', 'P') : token.replace('page-', 'P');
         const figure = document.createElement('figure');
         figure.className = 'page';
-        figure.id = `page-${pageNumber}`;
-        const label = document.createElement('span');
-        label.className = 'page-label';
-        label.textContent = `P${pageNumber}`;
+        figure.id = token;
+        const span = document.createElement('span');
+        span.className = 'page-label';
+        span.textContent = label;
         const image = document.createElement('img');
-        image.src = `/images/kindle-manga/page-${pageNumber}.webp`;
-        image.alt = `マンガ本文 ${pageNumber}ページ`;
+        image.src = '/images/kindle-manga/' + token + '.webp';
+        image.alt = 'マンガ本文 ' + label;
         image.width = 1200;
         image.height = 1920;
-        image.loading = page <= 2 ? 'eager' : 'lazy';
-        figure.appendChild(label);
+        image.loading = idx < 2 ? 'eager' : 'lazy';
+        figure.appendChild(span);
         figure.appendChild(image);
         stack.appendChild(figure);
-        if (ctaAfter[page]) { stack.appendChild(makeCta(ctaAfter[page])); }
-      }
+        if (ctaAfter[token]) { stack.appendChild(makeCta(ctaAfter[token])); }
+      });
     }
     const bar = document.getElementById('progress');
     if (bar) {

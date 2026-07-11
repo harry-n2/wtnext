@@ -219,7 +219,7 @@
 
       <div class="part" id="p3">
         <div class="part-head"><span class="part-no">第3章</span><h3>作る前に需要を確かめる（本書の核）</h3></div>
-        <div class="manga-stack" data-start="31" data-end="42"></div>
+        <div class="manga-stack" data-tokens="page-031,page-032,page-033,page-034,page-035,page-036,page-037,page-038,page-039,page-040,page-041,page-042,zoho-p075,zoho-p076,zoho-p100,zoho-p101,zoho-p102,zoho-p103,zoho-p077,zoho-p078,zoho-p079,zoho-p080,zoho-p081,zoho-p082,zoho-p083,zoho-p084,zoho-p085,zoho-p086"></div>
         <div class="narrow paper prose">
           <h3>1万円ではじめる需要テスト</h3>
           <p>完成品はいりません。まだ存在しないアプリでも、1枚の告知素材を出せば需要は見えます。需要検証の広告は、売るための広告ではありません。反応を測るための広告です。目的は、この課題にお金や時間を払ってでも解決したい人が本当にいるかを、少額で早く知ることです。</p>
@@ -248,7 +248,7 @@
 
       <div class="part" id="p4">
         <div class="part-head"><span class="part-no">第4章</span><h3>届ける場所と導線を作る</h3></div>
-        <div class="manga-stack" data-start="43" data-end="54"></div>
+        <div class="manga-stack" data-tokens="page-043,page-044,page-045,page-046,page-047,page-048,page-049,page-050,page-051,page-052,page-053,page-054,zoho-p087,zoho-p088,zoho-p104,zoho-p105,zoho-p089,zoho-p090,zoho-p091,zoho-p092"></div>
         <div class="narrow paper prose">
           <h3>媒体はプロダクトで選ぶ</h3>
           <p>媒体は、人気で選ぶものではありません。プロダクトで選ぶものです。動きで見せるものは動画系、実用やサブスクは画像でも伝わる媒体が向きます。まず1つで当てて、それから横に広げるのが、少額で戦う新規事業の勝ち筋です。</p>
@@ -264,7 +264,7 @@
 
       <div class="part" id="p5">
         <div class="part-head"><span class="part-no">第5章</span><h3>無料発信と改善ループ</h3></div>
-        <div class="manga-stack" data-start="55" data-end="66"></div>
+        <div class="manga-stack" data-tokens="page-055,page-056,page-057,page-058,page-059,page-060,page-061,page-062,page-063,page-064,page-065,page-066,zoho-p093,zoho-p094,zoho-p095,zoho-p096,zoho-p097,zoho-p098,zoho-p099"></div>
         <div class="narrow paper prose">
           <h3>無料の4手法と、1日1テスト</h3>
           <p>お金をかけずに伸ばす道もあります。ただし、早くはありません。SNS運用、口コミで広がる工夫、検索、ストア対策の4つを同時に少しずつ回します。無料の道は時間差で効きます。成果が出る前にやめないために、1日1つずつ進める仕組みを先に作ります。</p>
@@ -348,26 +348,30 @@
   <a class="linefab" href="https://lin.ee/7qGC2YD" target="_blank" rel="noopener">公式LINEで受け取る<small>無料3点セット・解除自由</small></a>
 
   <script>
-    // マンガページを各部の範囲で描画
-    document.querySelectorAll('.manga-stack[data-start]').forEach(function(stack){
-      var start = parseInt(stack.dataset.start, 10);
-      var end = parseInt(stack.dataset.end, 10);
-      for (var p = start; p <= end; p++) {
-        var num = String(p).padStart(3, '0');
+    // マンガページを各部ごとに描画（data-tokens があれば明示リスト、なければ data-start/end の範囲）
+    function mangaTokens(stack) {
+      if (stack.dataset.tokens) return stack.dataset.tokens.split(',');
+      var s = parseInt(stack.dataset.start, 10), e = parseInt(stack.dataset.end, 10), r = [];
+      for (var p = s; p <= e; p++) r.push('page-' + String(p).padStart(3, '0'));
+      return r;
+    }
+    document.querySelectorAll('.manga-stack[data-start], .manga-stack[data-tokens]').forEach(function(stack){
+      mangaTokens(stack).forEach(function(token, i){
+        var label = token.indexOf('zoho') === 0 ? token.replace('zoho-p', 'P') : token.replace('page-', 'P');
         var fig = document.createElement('figure');
         fig.className = 'page';
-        fig.id = 'page-' + num;
-        var label = document.createElement('span');
-        label.className = 'page-label';
-        label.textContent = 'P' + num;
+        fig.id = token;
+        var span = document.createElement('span');
+        span.className = 'page-label';
+        span.textContent = label;
         var img = document.createElement('img');
-        img.src = '/images/kindle-manga/page-' + num + '.webp';
-        img.alt = 'マンガ本文 ' + num + 'ページ';
+        img.src = '/images/kindle-manga/' + token + '.webp';
+        img.alt = 'マンガ本文 ' + label;
         img.width = 1200; img.height = 1920;
-        img.loading = (p <= 2) ? 'eager' : 'lazy';
-        fig.appendChild(label); fig.appendChild(img);
+        img.loading = (i < 1) ? 'eager' : 'lazy';
+        fig.appendChild(span); fig.appendChild(img);
         stack.appendChild(fig);
-      }
+      });
     });
     // 読了進捗バー
     var bar = document.getElementById('progress');
