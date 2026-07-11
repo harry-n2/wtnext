@@ -266,11 +266,73 @@ if ('serviceWorker' in navigator) {
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        .ebook-entry {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 120;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: min(420px, calc(100vw - 36px));
+        }
+        .ebook-entry a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid #c5a059;
+            background: #c5a059;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+        }
+        .ebook-entry a.secondary {
+            background: rgba(5, 10, 20, 0.88);
+            color: #e6f1ff;
+        }
+        .ebook-entry-label {
+            flex: 1 1 100%;
+            text-align: right;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            background: rgba(5, 10, 20, 0.82);
+            padding: 6px 12px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+        }
+        @media (max-width: 640px) {
+            .ebook-entry {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+            }
+            .ebook-entry a {
+                flex: 1 1 140px;
+            }
+            .ebook-entry-label {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body class="theme-authority">
     <div id="page-overlay"></div>
     <div id="root"></div>
+    <div class="ebook-entry" aria-label="無料で読める 個人開発マーケの教科書">
+        <span class="ebook-entry-label">無料で読める｜個人開発マーケの教科書</span>
+        <a href="/ebook">電子書籍＋マンガ</a>
+        <a href="/manga" class="secondary">マンガ版</a>
+    </div>
 
     <!-- SEO: 対応エリア情報（クローラー向け静的テキスト） -->
     <noscript>

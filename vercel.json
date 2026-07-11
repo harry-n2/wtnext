@@ -31,6 +31,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/ebook", "destination": "/ebook.html" },
+    { "source": "/manga", "destination": "/manga.html" },
     { "source": "/tokusho", "destination": "/tokusho.html" },
     { "source": "/privacy",  "destination": "/privacy.html"  },
     { "source": "/((?!.*\\..*$).*)", "destination": "/index.html" }

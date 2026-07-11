@@ -8,4 +8,18 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ja" href="https://wtnext.vercel.app/"/>
   </url>
+  <url>
+    <loc>https://wtnext.vercel.app/ebook</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://wtnext.vercel.app/ebook"/>
+  </url>
+  <url>
+    <loc>https://wtnext.vercel.app/manga</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://wtnext.vercel.app/manga"/>
+  </url>
 </urlset>
