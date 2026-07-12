@@ -113,6 +113,11 @@
     .gift-cards.two { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:14px; }
     .gift-card.sub .n { background:var(--navy); color:#fff; }
     .gift-card.sub h4 { font-size:17px; }
+    /* 視認性修正: .line-final の白文字継承より高詳細度で濃色を強制 */
+    .line-final .gift-hero h3 { color:var(--navy); }
+    .line-final .gift-hero-sub { color:var(--ink); }
+    .line-final .tool-card h4 { color:var(--navy); }
+    .line-final .tool-card p { color:var(--ink); font-size:15px; line-height:1.9; font-weight:500; }
     .line-final { background:var(--navy); color:#fff; border-radius:22px; padding:clamp(28px,5vw,52px); }
     .line-final h2, .line-final p { color:#fff; }
     .checklist { display:grid; gap:8px; margin:18px 0; padding:0; list-style:none; }
