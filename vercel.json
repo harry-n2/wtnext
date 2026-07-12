@@ -39,6 +39,7 @@
     { "source": "/works", "destination": "/works.html" },
     { "source": "/lark",  "destination": "/lark.html"  },
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/ads", "destination": "/ads.html" },
     { "source": "/((?!.*\\..*$).*)", "destination": "/index.html" }
   ]
 }
