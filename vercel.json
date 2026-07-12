@@ -35,6 +35,10 @@
     { "source": "/manga", "destination": "/manga.html" },
     { "source": "/tokusho", "destination": "/tokusho.html" },
     { "source": "/privacy",  "destination": "/privacy.html"  },
+    { "source": "/books", "destination": "/books.html" },
+    { "source": "/works", "destination": "/works.html" },
+    { "source": "/lark",  "destination": "/lark.html"  },
+    { "source": "/about", "destination": "/about.html" },
     { "source": "/((?!.*\\..*$).*)", "destination": "/index.html" }
   ]
 }
