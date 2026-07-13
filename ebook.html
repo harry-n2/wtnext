@@ -74,8 +74,8 @@
     .manga-stack { display:grid; gap:22px; width:min(760px,100%); margin:0 auto 26px; }
     .page { position:relative; background:var(--paper); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(23,32,51,.08); }
     .page img { aspect-ratio:1200/1920; width:100%; }
-    /* 視認性修正(1.a): 画像に重ねず、上部のキャプション帯として表示。左上/右上の吹き出しを隠さない */
-    .page-label { display:block; padding:9px 16px; background:var(--navy); color:#fff; font-size:13px; font-weight:900; letter-spacing:.05em; border-bottom:2px solid var(--gold); }
+    /* ページ番号は完全に非表示（オーナー指示）。JS/静的とも要素を生成しない */
+    .page-label { display:none; }
     /* 先出し要約（この章でわかること）: マンガの前に置き、読む前に要点を掴ませる */
     .chapter-guide { width:min(760px,100%); margin:0 auto 18px; background:var(--gold2); border:1px solid var(--gold); border-left:6px solid var(--gold); border-radius:12px; padding:16px 20px; }
     .chapter-guide .cg-tag { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:900; color:#8a6c1f; margin-bottom:4px; }
@@ -114,6 +114,41 @@
     .cost-table li { display:flex; flex-wrap:wrap; gap:6px 12px; padding:14px 16px; border:1px solid var(--line); border-radius:12px; background:#fff; font-size:17px; }
     .cost-table b { color:var(--navy); font-weight:900; min-width:11em; }
     .cost-flow { margin:18px 0 0; padding:16px 18px; border-left:4px solid var(--gold); background:var(--gold2); border-radius:10px; font-weight:700; font-size:17px; }
+    /* ===== 図解（テキストの壁をやめる・素人向け／SVG-CSSインライン） ===== */
+    .fig { background:#fff; border:1px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,26px); margin:22px 0; box-shadow:0 8px 22px rgba(23,32,51,.05); }
+    .fig-cap { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+    .fig-cap .tag { display:inline-flex; padding:4px 12px; border-radius:999px; background:var(--gold2); color:#8a6c1f; font-size:12px; font-weight:900; }
+    .fig-cap h4 { font-family:"Shippori Mincho",serif; color:var(--navy); font-size:clamp(17px,2.1vw,21px); margin:0; }
+    .stepper { display:grid; gap:12px; }
+    .step { display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+    .step .no { width:38px; height:38px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:flex; align-items:center; justify-content:center; font-size:16px; flex:none; }
+    .step .body b { display:block; color:var(--navy); font-size:16px; font-weight:900; }
+    .step .body span { font-size:15px; color:var(--ink); line-height:1.8; }
+    .funnel { display:grid; gap:8px; margin-top:6px; }
+    .funnel .tier { margin:0 auto; width:100%; background:var(--gold2); border:1px solid var(--gold); border-radius:10px; padding:10px 14px; text-align:center; }
+    .funnel .tier b { color:var(--navy); font-weight:900; display:block; font-size:15px; }
+    .funnel .tier span { font-size:13px; color:var(--muted); }
+    .judge { margin-top:16px; background:var(--navy); color:#fff; border-radius:12px; padding:16px 18px; font-weight:900; font-size:clamp(15px,1.9vw,18px); text-align:center; line-height:1.7; }
+    .judge b { color:var(--gold); }
+    .compare { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .cmp { border:1px solid var(--gold); border-radius:14px; padding:18px; background:var(--gold2); }
+    .cmp .ico { font-size:26px; }
+    .cmp b { display:block; color:var(--navy); font-size:16px; font-weight:900; margin:6px 0 4px; }
+    .cmp span { font-size:14px; color:var(--ink); line-height:1.8; }
+    .hub { margin-top:16px; text-align:center; }
+    .hub .core { display:inline-block; background:var(--navy); color:#fff; font-weight:900; border-radius:999px; padding:10px 22px; }
+    .hub .arrow { color:#8a6c1f; font-weight:900; margin:8px 0; font-size:16px; }
+    .hub .spokes { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+    .hub .spoke { border:1px dashed var(--gold); border-radius:10px; padding:8px 14px; font-weight:700; color:var(--navy); background:#fff; }
+    .quad { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .q { border:1px solid var(--line); border-radius:14px; padding:16px; background:#fff; }
+    .q .ico { font-size:24px; }
+    .q b { display:block; color:var(--navy); font-size:16px; font-weight:900; margin:6px 0 3px; }
+    .q span { font-size:14px; color:var(--ink); line-height:1.8; }
+    .cycle { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .cycle .node { background:var(--gold2); border:1px solid var(--gold); border-radius:10px; padding:10px 14px; font-weight:900; color:var(--navy); font-size:14px; text-align:center; }
+    .cycle .arw { color:#8a6c1f; font-weight:900; font-size:18px; }
+    .eg-note { font-size:13px; color:var(--muted); margin-top:12px; }
     .gift-hero { background:#fff; border:2px solid var(--gold); border-radius:20px; padding:clamp(22px,3.4vw,34px); margin:26px 0 0; box-shadow:0 16px 40px rgba(0,0,0,.20); }
     .gift-hero .hero-tag { display:inline-flex; padding:6px 14px; border-radius:999px; background:var(--gold); color:#fff; font-size:13px; font-weight:900; }
     .gift-hero h3 { color:var(--navy); font-size:clamp(24px,3.4vw,34px); margin:12px 0 6px; }
@@ -147,7 +182,7 @@
     footer { padding:34px 0 96px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
     @media (max-width:820px) {
       .hero-grid,.line-final,.author-grid { grid-template-columns:1fr; }
-      .toc,.gift-cards,.buy-cards,.tool-cards,.gift-cards.two { grid-template-columns:1fr; }
+      .toc,.gift-cards,.buy-cards,.tool-cards,.gift-cards.two,.compare,.quad { grid-template-columns:1fr; }
       .nav-inner { align-items:flex-start; padding:10px 0; flex-direction:column; }
       .nav-links { justify-content:flex-start; }
       .nav-links .pill { display:none; }
@@ -180,8 +215,8 @@
       <div class="section-head narrow"><span class="badge">はじめに</span><h2>作れる時代の勝敗は、集客で決まる。</h2></div>
       <div class="chapter-guide"><span class="cg-tag">まず読む前に</span><p>これは、この本全体の地図です。「作ったのに売れない」のは、才能ではなく“順番”の問題。作る前に需要を確かめる、という発想に切り替えるところから始めます。</p></div>
       <div class="manga-stack">
-        <figure class="page"><span class="page-label">はじめに 1</span><img src="/images/kindle-manga/intro-a.webp" alt="はじめにマンガ1" width="1200" height="1920" loading="lazy"></figure>
-        <figure class="page"><span class="page-label">はじめに 2</span><img src="/images/kindle-manga/intro-b.webp" alt="はじめにマンガ2" width="1200" height="1920" loading="lazy"></figure>
+        <figure class="page"><img src="/images/kindle-manga/intro-a.webp" alt="はじめにマンガ1" width="1200" height="1920" loading="lazy"></figure>
+        <figure class="page"><img src="/images/kindle-manga/intro-b.webp" alt="はじめにマンガ2" width="1200" height="1920" loading="lazy"></figure>
       </div>
       <div class="keyword-gloss narrow">
         <h4>マンガの3枚のカード＝この本の合言葉</h4>
@@ -283,42 +318,42 @@
 
       <div class="part" id="p3">
         <div class="part-head"><span class="part-no">第3章</span><h3>作る前に需要を確かめる（本書の核）</h3></div>
-        <div class="chapter-guide"><span class="cg-tag">この章でわかること</span><p>まだ無い商品でも、1万円以内で“欲しい人がいるか”を確かめられます。ここが本書の核。数字の見方も、順番に割り算するだけです。</p></div>
+        <div class="chapter-guide"><span class="cg-tag">この章でわかること</span><p>まだ無い商品でも、少額で“欲しい人がいるか”を確かめられます。ここが本書の核。数字の見方も、順番に割り算するだけです。</p></div>
         <div class="manga-stack" data-tokens="page-031,page-032,page-033,page-034,page-035,page-036,page-037,page-038,page-039,page-040,page-041,page-042,zoho-p075,zoho-p076,zoho-p100,zoho-p101,zoho-p102,zoho-p103,zoho-p077,zoho-p078,zoho-p079,zoho-p080,zoho-p081,zoho-p082,zoho-p083,zoho-p084,zoho-p085,zoho-p086"></div>
         <div class="narrow paper prose">
-          <h3>1万円ではじめる需要テスト</h3>
-          <p>完成品はいりません。まだ存在しないアプリでも、1枚の告知素材を出せば需要は見えます。需要検証の広告は、売るための広告ではありません。反応を測るための広告です。目的は、この課題にお金や時間を払ってでも解決したい人が本当にいるかを、少額で早く知ることです。</p>
-          <ol class="steps">
-            <li>まだ無い商品の一枚をつくる。誰の、どんな困りごとが、これで消えるのか。それが一目で伝わる告知画像を1枚だけ用意します。</li>
-            <li>少額で広告を出す。相場の目安は、5000円から1万円ほどです。作る前に方向を確かめるための、傷の浅い投資です。</li>
-            <li>事前登録で反応を受け止める。広告の行き先を、事前登録の一枚にします。登録が伸びれば需要あり、伸びなければ作る前に方向を変えられます。</li>
-            <li>数字で判断する。集める費用と生涯価値を並べ、続ける価値があるかを勘ではなく数字で見ます。</li>
-            <li>公開のときに列を使う。作り終えて公開したら、待っていた登録者から案内します。</li>
-          </ol>
-          <p class="note">事例では、1万円ほどの広告で約70件の登録が集まり、公開時には並んだ人の7割から8割がそのまま利用につながりました（いずれも事例であり、保証値ではありません）。</p>
+          <h3>作る前に、少額で“欲しい人”を確かめる</h3>
+          <p>完成品はいりません。まだ無い商品でも、告知を1枚出せば「欲しい人がいるか」は見えます。売る広告ではなく、反応を測る広告です。</p>
+
+          <div class="fig">
+            <div class="fig-cap"><span class="tag">図で見る</span><h4>需要テストは、この5ステップ</h4></div>
+            <div class="stepper">
+              <div class="step"><div class="no">1</div><div class="body"><b>📄 告知を1枚つくる</b><span>誰の・どんな困りごとが・これで消えるか。一目で伝わる画像を1枚だけ。</span></div></div>
+              <div class="step"><div class="no">2</div><div class="body"><b>📣 少額で広告を出す</b><span>検証予算の一例はワンコイン〜数千円ほど。方向を確かめるための浅い投資。</span></div></div>
+              <div class="step"><div class="no">3</div><div class="body"><b>✅ 事前登録で受け止める</b><span>広告の行き先は「事前登録の1枚」。伸びれば需要あり、伸びなければ作る前に方向転換。</span></div></div>
+              <div class="step"><div class="no">4</div><div class="body"><b>⚖️ 数字で判断する</b><span>勘ではなく数字で、続ける／変えるを決める。</span></div></div>
+              <div class="step"><div class="no">5</div><div class="body"><b>🚩 公開時に“待っていた列”へ</b><span>作り終えたら、登録して待っていた人から案内する。</span></div></div>
+            </div>
+          </div>
+
+          <div class="fig">
+            <div class="fig-cap"><span class="tag">図で見る</span><h4>コスパは、上から順に減っていく5つの数字</h4></div>
+            <div class="funnel">
+              <div class="tier" style="width:100%"><b>表示</b><span>広告が画面に出た回数</span></div>
+              <div class="tier" style="width:84%"><b>クリック率（CTR）</b><span>見た人のうち、押した割合</span></div>
+              <div class="tier" style="width:66%"><b>クリック単価（CPC）</b><span>1クリックの値段</span></div>
+              <div class="tier" style="width:48%"><b>登録率（CVR）</b><span>押した人のうち、登録した割合</span></div>
+              <div class="tier" style="width:34%"><b>登録単価（CPA）</b><span>1人に登録してもらう値段</span></div>
+            </div>
+            <div class="judge">判定はこれだけ：<b>登録単価</b>が「かけてよい上限」より<b>安ければ続ける</b>／高ければ一つだけ変える</div>
+            <p class="eg-note">仮の数字の例：広告1万円 → 表示20,000 → クリック200 → 登録20件 → 登録単価500円。説明用の目安で、媒体・業種・時期で変わります（保証値ではありません）。</p>
+          </div>
+
+          <p class="note">事例では、少額（〜1万円ほど）の広告で約70件の登録が集まり、公開時は並んだ人の7〜8割が利用につながりました（いずれも事例・目安であり、保証値ではありません）。</p>
           <ul class="key-list">
-            <li>告知素材の文 ── 「こんな困りごと、ありませんか」「それを解決するアプリを準備中です」「先行で使いたい人は、事前登録へ」。</li>
-            <li>画像プロンプトの骨子 ── 誰の何の悩みを一文で指定・文字は最小限・縦横2版。</li>
-            <li>予算と集める費用 ── まず1万円・登録数を数える・予算÷登録数・生涯価値と見比べる。</li>
+            <li>クリックが少ない → 画像と最初のひとことを変える。</li>
+            <li>登録が少ない → 行き先の1枚（約束・入力の手間）を直す。</li>
+            <li>登録単価が高い → 相手を絞る／画像・言葉を一つ変える。</li>
           </ul>
-          <h3>コスパの数字を、5つで判断する</h3>
-          <p>広告のコスパは、次の5つで見ます。むずかしく見えますが、順番に割り算するだけです。左から右へ、水が流れるように数が減っていきます。</p>
-          <ul class="cost-table">
-            <li><b>表示回数</b>広告が画面に出た回数。</li>
-            <li><b>クリック率（CTR）</b>クリック数 ÷ 表示回数 ×100。</li>
-            <li><b>クリック単価（CPC）</b>広告費 ÷ クリック数。</li>
-            <li><b>登録率（CVR）</b>登録数 ÷ クリック数 ×100。</li>
-            <li><b>登録単価（CPA・集める費用）</b>広告費 ÷ 登録数。</li>
-          </ul>
-          <p class="cost-flow">仮の数字で1本の流れ：広告費10,000円 → 表示20,000回 → クリック200（CTR＝1%）→ クリック単価50円 → 登録20件（CVR＝10%）→ 登録単価500円。</p>
-          <p class="note">これは説明用の仮の数字です。実際の値は、媒体・業種・時期で大きく変わります。</p>
-          <p>良い／悪いの判断は、ひとつだけ。<strong>登録単価が「かけてよい上限」より安ければ続ける</strong>。高ければ、一つだけ変える。上限は、粗利や生涯価値から逆算します（第1章の3つの数字）。</p>
-          <ul class="key-list">
-            <li>クリック率が低い ── 画像と最初のひとことを変える。</li>
-            <li>登録率が低い ── 行き先の一枚（約束・入力の手間）を直す。</li>
-            <li>登録単価が高い ── 相手を絞る／画像・言葉を一つ変える。</li>
-          </ul>
-          <p class="note">数字の目安は媒体・業種で変わります。表の見方は正解ではなく、最初の合図。自分の数字を毎週更新して基準にします。</p>
           <a class="backtop" href="#top">トップに戻る</a>
         </div>
       </div>
@@ -335,19 +370,27 @@
         <div class="chapter-guide"><span class="cg-tag">この章でわかること</span><p>媒体は人気ではなく“商品”で選びます。まず1つで当てて、それから横に広げる。少額で戦うための選び方と導線。</p></div>
         <div class="manga-stack" data-tokens="page-043,page-044,page-045,page-046,page-047,page-048,page-049,page-050,page-051,page-052,page-053,page-054,zoho-p087,zoho-p088,zoho-p104,zoho-p105,zoho-p089,zoho-p090,zoho-p091,zoho-p092"></div>
         <div class="narrow paper prose">
-          <h3>媒体はプロダクトで選ぶ</h3>
-          <p>媒体は、人気で選ぶものではありません。プロダクトで選ぶものです。動きで見せるものは動画系、実用やサブスクは画像でも伝わる媒体が向きます。まず1つで当てて、それから横に広げるのが、少額で戦う新規事業の勝ち筋です。</p>
-          <p>メタはビジネス用のアカウントだけで始められ、狙う相手も自動で調整されます。Xで出す場合は、相場の目安として月に千円ほどの認証が要ります。一度に複数を変えると、何が効いたか分からなくなります。変える要素は、1日1つに絞ります。</p>
+          <h3>媒体は“人気”でなく“商品”で選ぶ</h3>
+          <p>人気で選ばず、商品に合う場所を選ぶ。まず1つで当てて、それから横に広げます。</p>
+
+          <div class="fig">
+            <div class="fig-cap"><span class="tag">図で見る</span><h4>あなたの商品は、どちらの場所？</h4></div>
+            <div class="compare">
+              <div class="cmp"><div class="ico">🎬</div><b>動いて見せる商品</b><span>使う様子が動きで伝わるもの → 動画で出会う場所が向く。</span></div>
+              <div class="cmp"><div class="ico">🔍</div><b>探して選ぶ・続けて使う商品</b><span>実用やサブスク → 画像や検索で出会う場所が向く。</span></div>
+            </div>
+            <div class="hub">
+              <div class="core">当てた1本</div>
+              <div class="arrow">↓ 横に広げる ↓</div>
+              <div class="spokes"><span class="spoke">別の場所 A</span><span class="spoke">別の場所 B</span></div>
+            </div>
+            <p class="eg-note">変える要素は1日1つだけ。一度に複数変えると、何が効いたか分からなくなります。</p>
+          </div>
+
           <ul class="key-list">
-            <li>媒体選定 ── 動きで魅せるものは動画系、実用/サブスクは画像でも伝わる媒体。</li>
-            <li>初期設定 ── ビジネス用アカウント・目的は事前登録の獲得・予算は1日の少額・1本を1日回す。</li>
-            <li>横展開 ── 当たった一本を特定・良さを一言に・別媒体の比率と文字量に作り直す。</li>
-          </ul>
-          <p><strong>グーグル（検索広告）のコスパは、「言葉ごと」に見ます。</strong>式はメタと同じ（クリック率・クリック単価・登録率・登録単価）。加えて、実際に打たれた検索語ごとに黒字か赤字かを見て、費用だけを食う言葉を外す（除外）のが、コスパ改善の要です。</p>
-          <ul class="key-list">
-            <li>クリックは来るが登録が薄い言葉 ── 意図がずれている。外す（除外）。</li>
-            <li>表示は多いがクリックされない ── 見出し（ひと目で分かる約束）を変える。</li>
-            <li>登録単価が高止まり ── 当たった言葉に、寄せる。</li>
+            <li>初期設定 ── ビジネス用アカウント・目的は「事前登録」・予算は1日の少額・1本を1日回す。</li>
+            <li>検索で出す時 ── 実際に打たれた言葉ごとに黒字/赤字を見て、費用だけ食う言葉を外す（除外）。</li>
+            <li>迷ったら ── 当たった言葉・場所に寄せる。</li>
           </ul>
           <a class="backtop" href="#top">トップに戻る</a>
         </div>
@@ -358,15 +401,29 @@
         <div class="chapter-guide"><span class="cg-tag">この章でわかること</span><p>お金をかけない4つの発信を、“1日1テスト”で止めずに回し続けるコツ。有料と無料を1つのループに束ねます。</p></div>
         <div class="manga-stack" data-tokens="page-055,page-056,page-057,page-058,page-059,page-060,page-061,page-062,page-063,page-064,page-065,page-066,zoho-p093,zoho-p094,zoho-p095,zoho-p096,zoho-p097,zoho-p098,zoho-p099"></div>
         <div class="narrow paper prose">
-          <h3>無料の4手法と、1日1テスト</h3>
-          <p>お金をかけずに伸ばす道もあります。ただし、早くはありません。SNS運用、口コミで広がる工夫、検索、ストア対策の4つを同時に少しずつ回します。無料の道は時間差で効きます。成果が出る前にやめないために、1日1つずつ進める仕組みを先に作ります。</p>
-          <p>有料と無料は、別々に走らせるものではありません。ひとつの運用ループに束ね、毎週決まったリズムで回します。当たりを見つけ、横に広げ、また試す。この輪を止めないことが成果を生みます。</p>
-          <ul class="key-list">
-            <li>SNS運用 ── 反応と引用に手で返し、プロフィールに導線を置き、作る過程を見せる。</li>
-            <li>見せたくなる設計 ── 思わず人に見せたくなる一場面を、プロダクトの中に作る。</li>
-            <li>検索とストア ── 検索される言葉から逆算した記事、スクショ1枚目2枚目で価値を見せる。</li>
-            <li>週次ループ ── 今週の1テストを決める・毎日1つ試して記録・週末に当たりと外れを分ける・来週横展開。</li>
-          </ul>
+          <h3>無料の4つ＋“1日1つ”で回す</h3>
+          <p>お金をかけない道もあります。ただし、早くはありません。4つを少しずつ、1日1つ、止めずに回します。</p>
+
+          <div class="fig">
+            <div class="fig-cap"><span class="tag">図で見る</span><h4>お金をかけない、4つの発信</h4></div>
+            <div class="quad">
+              <div class="q"><div class="ico">💬</div><b>SNS運用</b><span>反応に手で返し、プロフに導線、作る過程を見せる。</span></div>
+              <div class="q"><div class="ico">✨</div><b>見せたくなる設計</b><span>思わず人に見せたくなる一場面を、商品の中に作る。</span></div>
+              <div class="q"><div class="ico">🔎</div><b>検索</b><span>検索される言葉から逆算した記事を置く。</span></div>
+              <div class="q"><div class="ico">🏬</div><b>ストア対策</b><span>スクショ1枚目・2枚目で価値を見せる。</span></div>
+            </div>
+          </div>
+
+          <div class="fig">
+            <div class="fig-cap"><span class="tag">図で見る</span><h4>止めないための、週1サイクル</h4></div>
+            <div class="cycle">
+              <span class="node">月：今週の1テストを決める</span><span class="arw">→</span>
+              <span class="node">毎日：1つ試して記録</span><span class="arw">→</span>
+              <span class="node">週末：当たり/外れを分ける</span><span class="arw">→</span>
+              <span class="node">翌週：当たりを横展開</span><span class="arw">↻</span>
+            </div>
+            <p class="eg-note">有料と無料は別々に走らせず、この1つのループに束ねます。成果は時間差で出るので、やめない仕組みを先に作ります。</p>
+          </div>
           <a class="backtop" href="#top">トップに戻る</a>
         </div>
       </div>
@@ -482,15 +539,12 @@
         var fig = document.createElement('figure');
         fig.className = 'page';
         fig.id = token;
-        var span = document.createElement('span');
-        span.className = 'page-label';
-        span.textContent = label;
         var img = document.createElement('img');
         img.src = '/images/kindle-manga/' + token + '.webp';
         img.alt = 'マンガ本文 ' + label;
         img.width = 1200; img.height = 1920;
         img.loading = (i < 1) ? 'eager' : 'lazy';
-        fig.appendChild(span); fig.appendChild(img);
+        fig.appendChild(img);
         stack.appendChild(fig);
       });
     });
