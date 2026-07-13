@@ -57,7 +57,8 @@
     .toc a { display:block; padding:15px 18px; border:1px solid var(--line); border-radius:14px; background:#fff; text-decoration:none; color:var(--navy); font-weight:900; }
     .manga-stack { display:grid; gap:28px; width:min(820px,calc(100% - 32px)); margin:0 auto; }
     .page { scroll-margin-top:88px; position:relative; }
-    .page-label { position:absolute; top:12px; left:12px; padding:5px 10px; border-radius:999px; background:rgba(0,51,102,.86); color:#fff; font-size:12px; font-weight:900; }
+    /* 視認性修正(1.a): 画像に重ねず上部キャプション帯に。左上/右上の吹き出しを隠さない */
+    .page-label { display:block; padding:9px 16px; background:#003366; color:#fff; font-size:13px; font-weight:900; letter-spacing:.05em; border-bottom:2px solid #c5a059; border-radius:12px 12px 0 0; }
     .line-box { background:var(--navy); color:#fff; border-radius:22px; padding:clamp(28px,5vw,52px); text-align:center; }
     .line-box h2,.line-box p { color:#fff; }
     .line-box .pill { background:#06c755; color:#fff; border-color:#06c755; }
